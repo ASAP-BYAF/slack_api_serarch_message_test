@@ -5,6 +5,6 @@ import (
 )
 
 func main() {
-  // search.SerachMessages("AI")
-  search.SerachMessages("open%20notion")
+  var query string = "open notion"
+  search.SerachMessages(query)
 }
