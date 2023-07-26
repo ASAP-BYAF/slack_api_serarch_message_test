@@ -8,11 +8,10 @@ import (
 
 func SerachMessages() {
   // ref: https://qiita.com/taizo/items/c397dbfed7215969b0a5
-  // url := "https://slack.com/api/search.messages?query=test&pretty=1"
-  // url := "https://slack.com/api/search.messages?query=AI&pretty=1"
   url := "https://slack.com/api/search.messages?query=test&pretty=1"
   req, _ := http.NewRequest("GET", url, nil)
-  req.Header.Set("Authorization", "Bearer xoxp-5634909965604-5632355661763-5656267501088-94f85e051307ec75eb82e0aa694666a5")
+//   req.Header.Set("Authorization", "Bearer xoxp-5634909965604-5632355661763-5656267501088-94f85e051307ec75eb82e0aa694666a5")
+  req.Header.Set("Authorization", "Bearer xoxp-5634909965604-5632355661763-5624048215511-f111c7c3a3cc90b254c67dcdec4954b6")
 
   dump, _ := httputil.DumpRequestOut(req, true)
   fmt.Printf("%s", dump)
