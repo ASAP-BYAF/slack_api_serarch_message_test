@@ -5,5 +5,6 @@ import (
 )
 
 func main() {
-  search.SerachMessages("AI")
+  // search.SerachMessages("AI")
+  search.SerachMessages("open%20notion")
 }
