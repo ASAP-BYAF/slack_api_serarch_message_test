@@ -2,6 +2,7 @@ package search
 
 import (
 	"strings"
+    "os"
 	"fmt"
     "net/http"
     "net/http/httputil"
@@ -9,18 +10,19 @@ import (
 
 func SerachMessages(query string) {
 
-    // query 文字列の空白を %20 に置き換える。
-	// query 文字列に空白が含まれているとエラーになる。
-	query  = strings.ReplaceAll(query, " ", "%20")
-
-	// slack api のエンドポイント
+    // slack api のエンドポイント
 	url := "https://slack.com/api/search.messages?pretty=1"
+
+    // クエリパラメータにクエリ文字列を追加。
+	// 空白が含まれているとエラーになるので %20 に置き換える。
+	query  = strings.ReplaceAll(query, " ", "%20")
 	url += "&query=" + query
 	
-	// ヘッダーに app の token を追加。
+    // ヘッダーに app の認証トークンを追加。
 	// ref: https://qiita.com/taizo/items/c397dbfed7215969b0a5
 	req, _ := http.NewRequest("GET", url, nil)
-    req.Header.Set("Authorization", "Bearer xoxp-5634909965604-5632355661763-5638582518147-6f843e20c76044a649bee7fd00b4d82c")
+	token := os.Getenv("SEARCH_APP_TOKEN")
+    req.Header.Set("Authorization", "Bearer "+token)
 
     dump, _ := httputil.DumpRequestOut(req, true)
     fmt.Printf("%s", dump)
