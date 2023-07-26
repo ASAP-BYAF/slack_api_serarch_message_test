@@ -5,5 +5,5 @@ import (
 )
 
 func main() {
-  search.SerachMessages()
+  search.SerachMessages("AI")
 }
